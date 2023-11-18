@@ -3,12 +3,15 @@ import React, { useRef, useState } from 'react'
 import '../../src/index.css';
 import { checkvaliddata  } from '../Utils/validate';
 import { BG_URL } from '../Utils/constants';
+import {  createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import {auth} from "../Utils/firebase"
+
 
 const Login = () => {
 
   const [isSignInForm, setIsSignInForm] = useState(true)
   const [errorMessage, setErrorMessage] = useState(null);
-  const name = useRef(null);
+  //const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
 
@@ -22,11 +25,41 @@ const Login = () => {
 
   
   const handleButtonClick = () => {
-    console.log(name.current.value);
+    //console.log(name.current.value);
     console.log(email.current.value);
     console.log(password.current.value);
-    const message= checkvaliddata(name.current.value, email.current.value, password.current.value)
+    const message= checkvaliddata( email.current.value, password.current.value)
     setErrorMessage(message);
+
+    if(message) return;
+
+    if(!isSignInForm){
+      createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
+      .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        console.log(user);
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setErrorMessage(errorMessage);
+      });
+
+    } else {
+      signInWithEmailAndPassword(auth, email.current.value, password.current.value)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        setErrorMessage(errorMessage);
+      });
+    }
   }
 
   return (
@@ -45,7 +78,7 @@ const Login = () => {
 
       {!isSignInForm && (
         <input
-          ref={name}
+          
           type="text"
           placeholder="Full Name"
           className="p-4 my-4 w-full bg-gray-700"
