@@ -13,7 +13,6 @@ const Header = () => {
    const dispatch = useDispatch();
   const handlesignout = () => {
     signOut(auth).then(() => {
-      navigate("/");
     }).catch((error) => {
       // An error happened.
     });
@@ -24,8 +23,10 @@ const Header = () => {
       if (user) {
         const { uid, email,displayName } = user;
         dispatch(addUser({uid: uid, email: email, displayName: displayName}));
+        navigate("/browse");
       } else {
         dispatch(removeUser());
+        navigate("/");
       }
     });
     

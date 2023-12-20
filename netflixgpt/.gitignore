@@ -15,6 +15,7 @@
 /dist
 /node_modules
 /.parcel-cache
+.node_modules
 
 # testing
 /coverage

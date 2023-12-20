@@ -5,14 +5,14 @@ import { checkvaliddata  } from '../Utils/validate';
 import { BG_URL } from '../Utils/constants';
 import {  createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import {auth} from "../Utils/firebase"
-import {  useNavigate } from 'react-router-dom';
+
 
 
 const Login = () => {
 
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-   const navigate = useNavigate();
+   
 
   //const name = useRef(null);
   const email = useRef(null);
@@ -42,13 +42,14 @@ const Login = () => {
         // Signed up 
         const user = userCredential.user;
         console.log(user);
-        navigate("/browse");
+       
         // ...
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         setErrorMessage(errorMessage);
+        setErrorMessage(errorCode);
       });
 
     } else {
@@ -57,13 +58,14 @@ const Login = () => {
         // Signed in 
         const user = userCredential.user;
         console.log(user);
-        navigate("/browse");
+      
 
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         setErrorMessage(errorMessage);
+        setErrorMessage(errorCode);
       });
     }
   }
@@ -82,14 +84,14 @@ const Login = () => {
         {isSignInForm ? "Sign In" : "Sign Up"}
       </h1>
 
-      {!isSignInForm && (
+      {/* {!isSignInForm && (
         <input
           
           type="text"
           placeholder="Full Name"
           className="p-4 my-4 w-full bg-gray-700"
         />
-      )}
+      )} */}
       <input
         ref={email}
         type="text"
