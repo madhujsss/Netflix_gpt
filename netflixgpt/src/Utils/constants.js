@@ -8,3 +8,5 @@ export const BG_URL = "https://assets.nflxext.com/ffe/siteui/vlv3/ab4b0b22-2ddf-
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNmFjN2FjMjU4Zjk2MGE2MjY3NzEyNTg5ZGVlMWI1OCIsInN1YiI6IjY1NWI0NjUwYjU0MDAyMTRkMDcwZTg5MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.34MklreDJMlGNWiUDyltTjh9M6BrD-gG5QwVfS6BRxk'
     }
   };
+
+  export const IMG_URL = "https://image.tmdb.org/t/p/w500";
