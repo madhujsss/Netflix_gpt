@@ -19,7 +19,7 @@ const Login = () => {
   const password = useRef(null);
 
   // const onFinish = () => {
-  //   console.log('Received values of form: ');
+ 
   // };
 
   const toggleSignInForm = () => {
@@ -28,9 +28,7 @@ const Login = () => {
 
   
   const handleButtonClick = () => {
-    //console.log(name.current.value);
-    console.log(email.current.value);
-    console.log(password.current.value);
+    
     const message= checkvaliddata( email.current.value, password.current.value)
     setErrorMessage(message);
 
@@ -40,8 +38,8 @@ const Login = () => {
       createUserWithEmailAndPassword(auth, email.current.value, password.current.value)
       .then((userCredential) => {
         // Signed up 
-        const user = userCredential.user;
-        console.log(user);
+       // const user = userCredential.user;
+       
        
         // ...
       })
@@ -56,10 +54,7 @@ const Login = () => {
       signInWithEmailAndPassword(auth, email.current.value, password.current.value)
       .then((userCredential) => {
         // Signed in 
-        const user = userCredential.user;
-        console.log(user);
-      
-
+       // const user = userCredential.user;
       })
       .catch((error) => {
         const errorCode = error.code;
